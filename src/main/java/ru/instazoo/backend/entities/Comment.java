@@ -3,7 +3,6 @@ package ru.instazoo.backend.entities;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -27,6 +26,10 @@ public class Comment {
     @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "post_id", referencedColumnName = "id")
     private Post owner;
+
+    @ManyToOne(cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @PrePersist
     private void init() {

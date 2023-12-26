@@ -3,8 +3,6 @@ package ru.instazoo.backend.entities;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import ru.instazoo.backend.dto.CommentDTO;
-
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -27,11 +25,15 @@ public class Post {
     @Column(name = "description", columnDefinition = "text")
     private String description;
 
-    @Column(name = "creation_time", updatable = false)
-    private LocalDateTime creationTime;
-
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
     private List<Comment> comments = new ArrayList<>();
+
+    @ManyToOne(cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @Column(name = "creation_time", updatable = false)
+    private LocalDateTime creationTime;
 
     @PrePersist
     private void init() {

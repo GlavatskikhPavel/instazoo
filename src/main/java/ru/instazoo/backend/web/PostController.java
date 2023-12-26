@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.*;
 import ru.instazoo.backend.dto.PostDTO;
 import ru.instazoo.backend.payload.response.Info;
 import ru.instazoo.backend.services.PostService;
-
 import java.util.List;
 
 @RestController

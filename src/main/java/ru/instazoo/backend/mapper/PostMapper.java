@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import ru.instazoo.backend.dto.PostDTO;
 import ru.instazoo.backend.entities.Post;
-
 import java.util.stream.Collectors;
 
 @Component
