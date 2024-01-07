@@ -42,6 +42,7 @@ public class User implements UserDetails {
     @Column(name = "active")
     private boolean active;
 
+    @Enumerated(EnumType.STRING)
     @ElementCollection(targetClass = Role.class)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     private Set<Role> roles = new HashSet<>();
@@ -57,6 +58,13 @@ public class User implements UserDetails {
 
     @Transient
     private Collection<? extends GrantedAuthority> authorities;
+
+    public User(Long id, String username, String password, Collection<? extends GrantedAuthority> authorities) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.authorities = authorities;
+    }
 
     @PrePersist
     private void init() {

@@ -1,6 +1,7 @@
 package ru.instazoo.backend.mapper;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import ru.instazoo.backend.dto.CommentDTO;
 import ru.instazoo.backend.entities.Comment;
@@ -8,6 +9,7 @@ import ru.instazoo.backend.entities.Post;
 import ru.instazoo.backend.exceptions.PostNotFoundException;
 import ru.instazoo.backend.repositories.PostRepository;
 
+@Slf4j
 @Component
 @RequiredArgsConstructor
 public class CommentMapper {
@@ -36,6 +38,7 @@ public class CommentMapper {
                 .findById(id)
                 .orElse(null);
         if (post == null) throw new PostNotFoundException("Not found Post with id: " + id);
+        log.info("Get Post: {}", post);
         return post;
     }
 }
